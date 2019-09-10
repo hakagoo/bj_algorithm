@@ -2,13 +2,17 @@ import java.util.Scanner;
 
 public class P_1244 {
 
-	static String[] sw;
+	static int[] sw;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		int n = Integer.parseInt(sc.nextLine());
-		sw = sc.nextLine().split(" ");
+		sw = new int[n+1];
+		for(int i = 1; i <= n; i++) {
+			sw[i] = sc.nextInt();
+		}
+		sc.nextLine();
 		int student = Integer.parseInt(sc.nextLine());
 
 		for (int i = 0; i < student; i++) {
@@ -27,17 +31,17 @@ public class P_1244 {
 				break;
 			}
 		}
-		for (int i = 0; i < sw.length; i++) {
-			System.out.print(((i+1)%20==0 || (i+1)==sw.length)? sw[i] : sw[i] + " ");
-			if (i % 19 == 0 && i > 0) {
-				System.out.println();
-			}
-		}
+		for (int i = 1; i <= n; i++) {
+	        System.out.print(sw[i] + " ");
+	        if (i % 20 == 0) {
+	            System.out.println();
+	        }
+	    }
 	}
 
-	static boolean girlCheck(int i, int flag) {
-		if (i - flag >= 0 && i + flag < sw.length) {
-			if (sw[i - flag].equals(sw[i + flag])) {
+	static boolean girlCheck(int number, int flag) {
+		if (number - flag >= 1 && number + flag <= sw.length-1) {
+			if (sw[number - flag]==(sw[number + flag])) {
 				return true;
 			} else {
 				return false;
@@ -49,40 +53,39 @@ public class P_1244 {
 	}
 
 	static void girl(int number) {
-		int i = number - 1;
 		int flag = 0;
-		int min = i;
-		int max = i;
+		int min = number;
+		int max = number;
 
 		while (true) {
-			if (girlCheck(i, flag)) {
-				min = i - flag;
-				max = i + flag;
+			if (girlCheck(number, flag)) {
+				min = number - flag;
+				max = number + flag;
 				flag++;
 			} else {
 				break;
 			}
 		}
 
-		for (int j = min; j <= max; j++) {
-			change(j);
+		for (int i = min; i <= max; i++) {
+			change(i);
 		}
 
 	}
 
 	static void boy(int number) {
-		for (int i = 0; i < sw.length; i++) {
-			if ((i + 1) % number == 0) {
+		for (int i = 1; i <= sw.length-1; i++) {
+			if (i % number == 0) {
 				change(i);
 			}
 		}
 	}
 
-	static void change(int i) {
-		if (sw[i].equals("1")) {
-			sw[i] = "0";
-		} else if (sw[i].equals("0")) {
-			sw[i] = "1";
+	static void change(int number) {
+		if (sw[number]==1) {
+			sw[number] = 0;
+		} else if (sw[number]==0) {
+			sw[number] = 1;
 		}
 	}
 
