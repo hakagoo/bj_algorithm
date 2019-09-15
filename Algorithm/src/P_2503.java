@@ -17,7 +17,7 @@ public class P_2503 {
 		
 		for(int i = 0; i < n; i++) {
 			String[] s = sc.nextLine().split(" ");
-			submit[i] = s[1];
+			submit[i] = s[0];
 			strikes[i] = Integer.parseInt(s[1]);
 			balls[i] = Integer.parseInt(s[2]);
 		}
