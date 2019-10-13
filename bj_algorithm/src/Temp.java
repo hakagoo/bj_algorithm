@@ -1,19 +1,20 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Temp {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		long n = sc.nextLong();
-		String N = String.valueOf(n);
-		char[] arr = N.toCharArray();
-		Arrays.sort(arr);
-		String result = "";
-		long answer = 0;
-		for(int i = 0; i < arr.length; i++) {
-			result += arr[i];
+		int n = sc.nextInt();
+		String[] phone_book = new String[n];
+		
+		boolean answer = true;
+		for(int i = 0; i < phone_book.length; i++) {
+			for(int j = 0; j < phone_book.length; j++) {
+				if(phone_book[i].startsWith(phone_book[j])) {
+					answer = false;
+					break;
+				}
+			}
 		}
-		answer = Long.valueOf(result);
 		
 	}
 }
