@@ -1,20 +1,32 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Temp {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		String[] phone_book = new String[n];
+		String arrangement = sc.nextLine();
 		
-		boolean answer = true;
-		for(int i = 0; i < phone_book.length; i++) {
-			for(int j = 0; j < phone_book.length; j++) {
-				if(phone_book[i].startsWith(phone_book[j])) {
-					answer = false;
-					break;
+		int answer = 0;
+		char[] arr = arrangement.toCharArray();
+		Stack<Integer> s = new Stack<>();
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] == '(') {
+				s.push(i);
+			} else {
+				if(s.peek()+1 == i) {
+					s.pop();
+					answer += s.size();
+				} else {
+					s.pop();
+					answer++;
 				}
 			}
 		}
+		
+		
+		
+		
 		
 	}
 }
