@@ -37,12 +37,13 @@ public class P_4963 {
 	}
 
 	public static void search(int w, int h) {
-		int[] x = {-1, 0, 1, -1, 1, -1, 0, 1};
-		int[] y = {-1, -1, -1, 0, 0, 1, 1, 1};
+		int[] x = {-1, 0, 1};
 		map[w][h] = 0;
-		for(int i = 0; i < 8; i++) {
-			if(isRange(w+x[i], h+y[i]) && map[w+x[i]][h+y[i]] == 1) {
-				search(w+x[i], h+y[i]);
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {				
+				if(isRange(w+x[i], h+x[j]) && map[w+x[i]][h+x[j]] == 1) {
+					search(w+x[i], h+x[j]);
+				}
 			}
 		}
 		
